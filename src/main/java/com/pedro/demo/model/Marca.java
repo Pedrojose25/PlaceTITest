@@ -1,12 +1,13 @@
 package com.pedro.demo.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "marca")
-public class Marca {
+public class Marca implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,6 +20,15 @@ public class Marca {
     private boolean ativo;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "marca")
     private List<Modelo> modelos = new ArrayList<Modelo>();
+    public void addModelo(Modelo modelo) {
+        modelos.add(modelo);
+        modelo.setId(this.id);
+    }
+
+    public void removeModelo(Modelo modelo) {
+        modelos.remove(modelo);
+        modelo.setId(null);
+    }
 
     public Marca(Long id, String nome) {
         this.id = id;

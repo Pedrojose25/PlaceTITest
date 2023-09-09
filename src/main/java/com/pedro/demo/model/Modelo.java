@@ -1,11 +1,12 @@
 package com.pedro.demo.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "modelo")
-public class Modelo {
+public class Modelo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

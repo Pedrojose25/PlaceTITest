@@ -35,4 +35,7 @@ public class MarcaService implements Serializable {
         deleteMarca(marca.getId());
         inserirMarca(marca);
     }
+    public Marca buscarPorId(Long id){
+        return repository.findById(id).orElseThrow();
+    }
 }

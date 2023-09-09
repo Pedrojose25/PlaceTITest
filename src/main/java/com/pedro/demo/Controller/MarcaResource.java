@@ -42,5 +42,11 @@ public class MarcaResource {
         service.atualizarMarca(marca);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Marca> buscarPorId(@PathVariable("id")Long id){
+       Marca marcaPorId = service.buscarPorId(id);
+
+        return ResponseEntity.ok(marcaPorId);
+    }
 
 }
