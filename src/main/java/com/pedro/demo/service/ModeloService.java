@@ -8,4 +8,5 @@ import java.io.Serializable;
 @Service
 @Transactional
 public class ModeloService implements Serializable {
+
 }

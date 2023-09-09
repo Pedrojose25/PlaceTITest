@@ -20,6 +20,11 @@ public class Marca {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "marca")
     private List<Modelo> modelos = new ArrayList<Modelo>();
 
+    public Marca(Long id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+
     public Marca() {
     }
 
