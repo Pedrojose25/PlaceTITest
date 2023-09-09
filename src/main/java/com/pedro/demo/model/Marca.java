@@ -17,7 +17,7 @@ public class Marca {
     @Column(name = "codigo_denatran", nullable = false)
     private String codigoDenatran;
     private boolean ativo;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "marca")
     private List<Modelo> modelos = new ArrayList<Modelo>();
 
     public Marca() {

@@ -16,7 +16,7 @@ public class Modelo {
     @Column(name = "ano", nullable = false)
     private Date ano;
     private boolean ativo;
-    @ManyToOne
+    @ManyToOne()
     private Marca marca;
 
     public Long getId() {
