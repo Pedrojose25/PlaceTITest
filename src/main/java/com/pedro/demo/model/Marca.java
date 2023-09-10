@@ -19,10 +19,10 @@ public class Marca implements Serializable {
     private String codigoDenatran;
     private boolean ativo;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "marca")
-    private List<Modelo> modelos = new ArrayList<Modelo>();
+    private List<Modelo> modelos = new ArrayList<>();
     public void addModelo(Modelo modelo) {
         modelos.add(modelo);
-        modelo.setId(this.id);
+        modelo.setMarca(this);
     }
 
     public void removeModelo(Modelo modelo) {

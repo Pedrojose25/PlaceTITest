@@ -1,5 +1,7 @@
 package com.pedro.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -17,6 +19,7 @@ public class Modelo implements Serializable {
     @Column(name = "ano", nullable = false)
     private Date ano;
     private boolean ativo;
+    @JsonIgnore
     @ManyToOne()
     private Marca marca;
 
