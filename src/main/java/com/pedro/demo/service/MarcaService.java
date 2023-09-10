@@ -31,25 +31,17 @@ public class MarcaService implements Serializable {
         if (!marca.getModelos().isEmpty()) {
             Modelo modelo = modeloService.buscarPorId(marca.getModelos().get(0).getId());
             marca.addModelo(modelo);
-//            List<Modelo> modeloEncontrado = new ArrayList<>();
-//            for (int i = 0; i < marca.getModelos().size(); i++) {
-//                Modelo modelo = modeloService.buscarPorId(marca.getModelos().get(i).getId());
-//                marca.addModelo(modelo);
-//                repository.save(marca);
-//            }
-//            System.out.println(marca.getModelos().size());
-//            marca.getModelos().forEach((data) -> {
-//                System.out.println(data.getId());
-//                Modelo modelo = modeloService.buscarPorId(data.getId());
-//                marca.addModelo(modelo);
-//            });
         }
         var saveRetornado = repository.save(marca);
 
         return buscarPorId(saveRetornado.getId());
     }
 
-    public void deleteMarca(Long id) {
+    public void deleteMarca(Long id) throws Exception {
+        Marca marcaPorId = buscarPorId(id);
+        if (!marcaPorId.getModelos().isEmpty()) {
+            throw new IllegalArgumentException("Ainda tem Modelos relacionados a esta Marca, favor deletá-los antes");
+        }
         repository.deleteById(id);
     }
 
@@ -59,7 +51,15 @@ public class MarcaService implements Serializable {
         marcaPorId.setAtivo(marca.isAtivo());
         marcaPorId.setCodigoDenatran(marca.getCodigoDenatran());
         marcaPorId.setModelos(marca.getModelos());
-        repository.save(marcaPorId);
+        inserirMarca(marcaPorId);
+    }
+
+    public void deleteModeloDentroMarca(Marca marca) {
+        if (!marca.getModelos().isEmpty()) {
+            Modelo modelo = modeloService.buscarPorId(marca.getModelos().get(0).getId());
+            marca.removeModelo(modelo);
+        }
+        repository.save(marca);
     }
 
     public Marca buscarPorId(Long id) {

@@ -36,8 +36,7 @@ public class ModeloService implements Serializable {
     }
 
     public Modelo buscarPorId(Long id) {
-        Modelo modeloPorId = repository.findById(id).orElseThrow();
-        return modeloPorId;
+        return repository.findById(id).orElseThrow();
     }
 
 }

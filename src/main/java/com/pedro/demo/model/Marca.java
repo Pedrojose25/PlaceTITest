@@ -27,7 +27,7 @@ public class Marca implements Serializable {
 
     public void removeModelo(Modelo modelo) {
         modelos.remove(modelo);
-        modelo.setId(null);
+        modelo.setMarca(null);
     }
 
     public Marca(Long id, String nome) {

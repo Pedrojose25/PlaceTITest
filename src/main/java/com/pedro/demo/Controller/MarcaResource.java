@@ -31,10 +31,17 @@ public class MarcaResource {
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<Void> deleteMarca(@PathVariable("id") Long id){
+    public ResponseEntity<Void> deleteMarca(@PathVariable("id") Long id) throws Exception {
         service.deleteMarca(id);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deletarModeloDentroMarca(@RequestBody Marca modeloRemocao) {
+        service.deleteModeloDentroMarca(modeloRemocao);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping
