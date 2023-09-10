@@ -48,6 +48,8 @@ Salve o arquivo e saia do editor.
 
 source ~/.bashrc
 
+# Subindo projeto localmente 
+
 Vá no repostitório do projeto e copie a URL.
 
 Dentro de um diretório abra o terminal e escreva: git clone <URL_do_Projeto>
